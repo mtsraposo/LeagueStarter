@@ -6,8 +6,20 @@
 }
 
 <ul>
-    @foreach(Team Team in Model.Teams)
+    @foreach(Conference Conference in Model.Conferences)
     {
-        <li>@Team.Name</li>
+        <h2>@Conference.Name</h2> 
+        <ul>
+            @foreach(Division Division in Model.GetConferenceDivisions(Conference.ConferenceId))
+            {
+                <h2>@Division.Name</h2>
+                <ul>
+                    @foreach(Team Team in Model.GetDivisionTeams(Division.DivisionId))
+                    {
+                        <li>@Team.Name</li>
+                    }            
+                </ul>
+            }
+        </ul>
     }
 </ul>
