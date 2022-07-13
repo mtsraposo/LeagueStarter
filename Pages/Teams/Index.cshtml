@@ -1,0 +1,13 @@
+@page
+@model IndexModel
+@using League.Models
+@{
+    ViewData["Title"] = "NFL Teams";
+}
+
+<ul>
+    @foreach(Team Team in Model.Teams)
+    {
+        <li>@Team.Name</li>
+    }
+</ul>
