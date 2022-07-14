@@ -32,6 +32,9 @@ namespace League.Pages.Players
         public string SelectedPosition {get; set;}
         [BindProperty(SupportsGet = true)]
         public string SearchString {get; set;}
+        [BindProperty(SupportsGet = true)]
+        public string SortColumn {get; set;} = "Name";
+        public SelectList SortColumns = new SelectList(new List<string>{"Name", "Team", "Position"});
         public async Task OnGetAsync()
         {
             
@@ -48,6 +51,12 @@ namespace League.Pages.Players
             if (!string.IsNullOrEmpty(SearchString))
             {
                 players = players.Where(p => p.Name.Contains(SearchString));
+            }
+            switch (SortColumn)
+            {
+                case "Number": players = players.OrderBy(p => p.Number).ThenBy(p => p.TeamId); break;
+                case "Name": players = players.OrderBy(p => p.Name).ThenBy(p => p.TeamId); break;
+                case "Position": players = players.OrderBy(p => p.Position).ThenBy(p => p.TeamId); break;
             }
 
             Players = await players.ToListAsync();

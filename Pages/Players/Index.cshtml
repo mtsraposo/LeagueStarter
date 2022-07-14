@@ -23,6 +23,10 @@
             <label asp-for="SearchString">Name:</label>
             <input asp-for="SearchString" onchange="this.form.submit()" />
         </div>
+        <div>
+            <label asp-for="SortColumn">Sort by:</label>
+            <select asp-for="SortColumn" asp-items="Model.SortColumns" onchange="this.form.submit()"></select>
+        </div>
     </form>
 </div>
 
