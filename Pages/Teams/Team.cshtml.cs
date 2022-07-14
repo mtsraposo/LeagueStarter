@@ -18,7 +18,6 @@ namespace League.Pages.Teams
         }
 
         public Team Team {get; set;}
-        public List<Player> Players {get; set;}
         public async Task OnGetAsync(string id)
         {
             Team = await _context.Teams

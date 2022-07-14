@@ -1,0 +1,12 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Players";
+}
+
+<section class="grid">
+    @foreach(Player Player in Model.Players)
+    {
+        <div>@Player.Name</div>
+    }
+</section>
