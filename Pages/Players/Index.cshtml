@@ -1,8 +1,27 @@
 @page
 @model IndexModel
+@using League.Models
 @{
     ViewData["Title"] = "Players";
 }
+
+<div>
+    <form>
+        <div>
+            <label asp-for="SelectedTeam">Team: </label>
+            <select asp-for="SelectedTeam" asp-items="Model.Teams" onchange="this.form.submit()">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="SelectedPosition">Position: </label>
+            <select asp-for="SelectedPosition" asp-items="Model.Positions" onchange="this.form.submit()">
+                <option value="">All</option>
+            </select>
+        </div>
+    </form>
+</div>
+
 
 <section class="grid container">
   <div class="d-flex bg-primary text-white">
@@ -15,7 +34,7 @@
   </div>
 
   @foreach (Player Player in Model.Players) {
-    <a class="@(Player.Depth == 1 ? "d-flex starter" : "d-flex")" asp-page="/Players/Player" asp-route-id="@Player.PlayerId">
+    <a class="@Model.PlayerClass(Player)" asp-page="/Players/Player" asp-route-id="@Player.PlayerId">
       <div class="p-1" style="flex:0 0 10%">@Player.Number</div>
       <div class="p-1" style="flex:0 0 25%">@Player.Name</div>
       <div class="p-1" style="flex:0 0 10%">@Player.Position</div>
