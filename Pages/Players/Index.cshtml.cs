@@ -30,6 +30,8 @@ namespace League.Pages.Players
         public string SelectedTeam {get; set;}
         [BindProperty(SupportsGet = true)]
         public string SelectedPosition {get; set;}
+        [BindProperty(SupportsGet = true)]
+        public string SearchString {get; set;}
         public async Task OnGetAsync()
         {
             
@@ -42,6 +44,10 @@ namespace League.Pages.Players
             if (!string.IsNullOrEmpty(SelectedPosition))
             {
                 players = players.Where(p => p.Position == SelectedPosition);
+            }
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                players = players.Where(p => p.Name.Contains(SearchString));
             }
 
             Players = await players.ToListAsync();

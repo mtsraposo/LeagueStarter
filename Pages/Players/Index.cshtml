@@ -19,6 +19,10 @@
                 <option value="">All</option>
             </select>
         </div>
+        <div>
+            <label asp-for="SearchString">Name:</label>
+            <input asp-for="SearchString" onchange="this.form.submit()" />
+        </div>
     </form>
 </div>
 
