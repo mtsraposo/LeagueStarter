@@ -5,21 +5,27 @@
     ViewData["Title"] = "NFL Teams";
 }
 
-<ul>
+<section class="grid">
     @foreach(Conference Conference in Model.Conferences)
     {
-        <h2>@Conference.Name</h2> 
-        <ul>
+        <h4 class="p-2">@Conference.Name</h4> 
+        <section>
             @foreach(Division Division in Model.GetConferenceDivisions(Conference.ConferenceId))
             {
-                <h2>@Division.Name</h2>
-                <ul>
+                <h5 class="bg-primary p-1 text-white">@Division.Name</h5>
+                <section>
                     @foreach(Team Team in Model.GetDivisionTeams(Division.DivisionId))
                     {
-                        <li>@Team.Name</li>
+                        <a class="d-flex p1">
+                            <div style="flex:0 0 25%">@Team.Name</div>
+                            <div style="flex:0 0 25%">@Team.Location</div>
+                            <div style="flex:0 0 5%">@Team.Win</div>
+                            <div style="flex:0 0 5%">@Team.Loss</div>
+                            <div style="flex:0 0 5%">@Team.Tie</div>
+                        </a>
                     }            
-                </ul>
+                </section>
             }
-        </ul>
+        </section>
     }
-</ul>
+</section>
