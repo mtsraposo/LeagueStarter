@@ -4,9 +4,24 @@
     ViewData["Title"] = "Players";
 }
 
-<section class="grid">
-    @foreach(Player Player in Model.Players)
-    {
-        <div>@Player.Name</div>
-    }
+<section class="grid container">
+  <div class="d-flex bg-primary text-white">
+    <div class="p-1" style="flex:0 0 10%">Number</div>
+    <div class="p-1" style="flex:0 0 25%">Name</div>
+    <div class="p-1" style="flex:0 0 10%">Position</div>
+    <div class="p-1" style="flex:0 0 20%">Experience</div>
+    <div class="p-1" style="flex:0 0 25%">College</div>
+    <div class="p-1" style="flex:0 0 10%">Depth</div>
+  </div>
+
+  @foreach (Player Player in Model.Players) {
+    <a class="@(Player.Depth == 1 ? "d-flex starter" : "d-flex")" asp-page="/Players/Player" asp-route-id="@Player.PlayerId">
+      <div class="p-1" style="flex:0 0 10%">@Player.Number</div>
+      <div class="p-1" style="flex:0 0 25%">@Player.Name</div>
+      <div class="p-1" style="flex:0 0 10%">@Player.Position</div>
+      <div class="p-1" style="flex:0 0 20%">@Player.Experience</div>
+      <div class="p-1" style="flex:0 0 25%">@Player.College</div>
+      <div class="p-1" style="flex:0 0 10%">@Player.Depth</div>
+    </a>
+  }
 </section>
