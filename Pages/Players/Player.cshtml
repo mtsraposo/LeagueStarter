@@ -1,0 +1,9 @@
+@page "{id}"
+@model PlayerModel
+@{
+    ViewData["Title"] = "Player";
+}
+
+<img src="~/image/nfl/logo/@(Model.Player.TeamId).png" />
+
+<div>@Model.Player.Name</div>
